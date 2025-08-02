@@ -1,7 +1,8 @@
 import React, { useCallback, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Upload, FileText, BookOpen, File } from 'lucide-react'
-import { parseEpub, parsePdf, parseMarkdown, parseText } from '../utils/bookParsers'
+//import { parseEpub, parsePdf, parseMarkdown, parseText } from '../utils/bookParsers'
+import { parseBook } from '../utils/bookParsers'
 
 const FileUploader = ({ onBookUpload }) => {
   const [isDragging, setIsDragging] = useState(false)
