@@ -1,7 +1,7 @@
 // 📚 Universal Book Parsers - Diseñado con amor por Hypatia
 // Parsea EPUB, PDF, Markdown y TXT a formato estructurado
 
-import ePub from 'epub'
+//import ePub from 'epub'
 import * as pdfjsLib from 'pdfjs-dist/build/pdf'
 import MarkdownIt from 'markdown-it'
 
