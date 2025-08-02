@@ -12,8 +12,6 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "epub": "^1.2.0",
-    "pdfjs-dist": "^3.11.174",
     "markdown-it": "^13.0.2",
     "framer-motion": "^10.16.4",
     "lucide-react": "^0.263.1"
