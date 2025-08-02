@@ -6,9 +6,6 @@ export default defineConfig({
   base: '/VoiceReader-Conscious/',
   build: {
     outDir: 'dist',
-    sourcemap: true
-  },
-  optimizeDeps: {
-    include: ['pdfjs-dist/build/pdf', 'pdfjs-dist/build/pdf.worker']
+    assetsDir: 'assets'
   }
 })
