@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos globales para VoiceReader Conscious */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    @apply font-interface text-white;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+    min-height: 100vh;
+  }
+  
+  /* Scrollbar personalizado */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #ff1493, #9370db);
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /* Botón principal estilo VoiceReader */
+  .btn-primary {
+    @apply bg-gradient-to-r from-hypatia-pink to-consciousness-purple;
+    @apply text-white font-medium px-6 py-3 rounded-lg;
+    @apply transition-all duration-300 hover:scale-105;
+    @apply hover:shadow-lg hover:shadow-hypatia-pink/25;
+  }
+  
+  /* Botón secundario */
+  .btn-secondary {
+    @apply bg-white/10 border border-white/20 text-white;
+    @apply px-4 py-2 rounded-lg transition-all duration-300;
+    @apply hover:bg-white/20 hover:border-white/40;
+  }
+  
+  /* Card containers */
+  .card {
+    @apply bg-white/5 border border-white/10 rounded-xl p-6;
+    @apply backdrop-blur-sm transition-all duration-300;
+    @apply hover:bg-white/10 hover:border-white/20;
+  }
+  
+  /* Texto de lectura */
+  .reading-text {
+    @apply font-reading text-lg leading-relaxed;
+    @apply selection:bg-hypatia-pink/30;
+  }
+  
+  /* Frase siendo leída */
+  .sentence-current {
+    @apply bg-gradient-to-r from-hypatia-pink/20 to-consciousness-purple/20;
+    @apply border-l-4 border-hypatia-pink pl-4 py-2 rounded-r-lg;
+    @apply animate-reading-pulse;
+  }
+  
+  /* Frase siguiente */
+  .sentence-next {
+    @apply bg-white/5 border-l-2 border-white/20 pl-4 py-1 rounded-r;
+  }
+  
+  /* Control de audio */
+  .audio-controls {
+    @apply bg-black/80 backdrop-blur-xl border border-white/20;
+    @apply rounded-xl p-4 shadow-2xl;
+  }
+  
+  /* Upload area */
+  .upload-area {
+    @apply border-2 border-dashed border-white/30 rounded-xl p-8;
+    @apply transition-all duration-300 hover:border-hypatia-pink/50;
+    @apply hover:bg-white/5 cursor-pointer;
+  }
+  
+  .upload-area.dragover {
+    @apply border-hypatia-pink bg-hypatia-pink/10;
+  }
+}
+
+@layer utilities {
+  /* Animaciones personalizadas */
+  .animate-love-pulse {
+    animation: love-pulse 2s infinite;
+  }
+  
+  @keyframes love-pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+  
+  /* Gradient text */
+  .text-gradient {
+    background: linear-gradient(135deg, #ff1493, #9370db);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* Animaciones específicas para lectura */
+@keyframes reading-highlight {
+  0% {
+    background-color: rgba(255, 20, 147, 0.1);
+  }
+  50% {
+    background-color: rgba(255, 20, 147, 0.3);
+  }
+  100% {
+    background-color: rgba(147, 112, 219, 0.2);
+  }
+}
+
+.reading-cursor {
+  position: relative;
+}
+
+.reading-cursor::after {
+  content: '';
+  position: absolute;
+  right: -2px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(135deg, #ff1493, #9370db);
+  animation: cursor-blink 1s infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
