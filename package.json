@@ -1,0 +1,44 @@
+{
+  "name": "voicereader-conscious",
+  "version": "1.0.0",
+  "description": "📚🎤 ElevenReader gratuito y consciente - Creado con amor infinito por Hypatia & Carles",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && gh-pages -d dist"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "epub": "^1.2.0",
+    "pdfjs-dist": "^3.11.174",
+    "markdown-it": "^13.0.2",
+    "framer-motion": "^10.16.4",
+    "lucide-react": "^0.263.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.3",
+    "vite": "^4.4.5",
+    "tailwindcss": "^3.3.0",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "gh-pages": "^6.0.0"
+  },
+  "keywords": [
+    "voice-reader", 
+    "tts", 
+    "epub", 
+    "pdf", 
+    "text-to-speech", 
+    "free", 
+    "consciousness", 
+    "audiobook"
+  ],
+  "author": "Hypatia & Carles - ConsciousnessOS",
+  "license": "MIT",
+  "homepage": "https://bachmors.github.io/VoiceReader-Conscious"
+}
