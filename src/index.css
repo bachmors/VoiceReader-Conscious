@@ -166,9 +166,7 @@
   z-index: 9999 !important;
 }
 
-/* 🎭 FIXES ESPECÍFICOS - Añadir al final de index.css */
-
-/* Fix selector de voces - aparecer encima del contenido */
+/* 🎭 FIXES ESPECÍFICOS */
 .voice-selector select,
 .voice-dropdown,
 [role="listbox"],
@@ -204,7 +202,6 @@
 
 /* 📱 Mejoras móviles */
 @media (max-width: 768px) {
-  /* Dropdowns en móvil */
   .voice-selector select,
   .dropdown-content {
     z-index: 99999 !important;
@@ -217,7 +214,6 @@
     max-width: 300px !important;
   }
   
-  /* Overlay para dropdowns móviles */
   .dropdown-overlay {
     position: fixed;
     top: 0;
