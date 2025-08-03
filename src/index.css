@@ -165,3 +165,204 @@
 [data-radix-select-content] {
   z-index: 9999 !important;
 }
+
+/* 🎭 FIXES ESPECÍFICOS - Añadir al final de index.css */
+
+/* Fix selector de voces - aparecer encima del contenido */
+.voice-selector select,
+.voice-dropdown,
+[role="listbox"],
+[role="combobox"] + div,
+.lucide-react + div {
+  z-index: 9999 !important;
+  position: relative;
+}
+
+/* Si usa Radix UI, Headless UI o similar */
+[data-radix-popper-content-wrapper],
+[data-radix-select-content],
+[data-headlessui-state="open"],
+.headlessui-portal {
+  z-index: 9999 !important;
+}
+
+/* Dropdown menus genéricos */
+.dropdown-content,
+.dropdown-menu,
+.select-options {
+  z-index: 9999 !important;
+  position: absolute;
+}
+
+/* 📚 Mejoras para el cursor de lectura */
+.sentence.reading-current {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 0 3px rgba(255, 20, 147, 0.2);
+  border-radius: 6px;
+}
+
+/* 📱 Mejoras móviles */
+@media (max-width: 768px) {
+  /* Dropdowns en móvil */
+  .voice-selector select,
+  .dropdown-content {
+    z-index: 99999 !important;
+    position: fixed !important;
+    top: auto !important;
+    bottom: 50% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 90% !important;
+    max-width: 300px !important;
+  }
+  
+  /* Overlay para dropdowns móviles */
+  .dropdown-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+  }
+}
+
+/* 🎯 Cursor de lectura mejorado */
+.text-container .sentence {
+  transition: all 0.3s ease;
+  padding: 2px 4px;
+  margin: 0 1px;
+  border-radius: 4px;
+}
+
+.text-container .sentence:hover {
+  background: rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+}
+
+.text-container .sentence.reading-current {
+  animation: reading-pulse 2s ease-in-out infinite;
+}
+
+@keyframes reading-pulse {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 0 0 0 3px rgba(255, 20, 147, 0.2);
+  }
+  50% { 
+    transform: scale(1.02);
+    box-shadow: 0 0 0 6px rgba(255, 20, 147, 0.1);
+  }
+}
+
+/* 🎨 Mejoras visuales para carga */
+.upload-area {
+  transition: all 0.3s ease;
+}
+
+.upload-area.dragover {
+  transform: scale(1.02);
+  box-shadow: 0 0 30px rgba(255, 20, 147, 0.3);
+}
+
+/* 📖 Estilos para lista de libros recientes */
+.recent-books-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.book-item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.book-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.book-item-cover {
+  width: 48px;
+  height: 64px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.book-item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.book-item-title {
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.book-item-meta {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.book-item-progress {
+  font-size: 0.875rem;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+/* 🎵 Efectos de sonido visuales */
+.reading-controls.active {
+  animation: audio-pulse 1s ease-in-out infinite;
+}
+
+@keyframes audio-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* 🌟 Tooltips informativos */
+.tooltip {
+  position: relative;
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 10000;
+}
+
+.tooltip:hover::after {
+  opacity: 1;
+}
