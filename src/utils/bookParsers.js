@@ -134,35 +134,44 @@ export const parseText = async (file) => {
 
 export const parseEpub = async (file) => {
   try {
-    const arrayBuffer = await file.arrayBuffer()
-    const book = ePub(arrayBuffer)
+    const book = ePub(file)
     
     await book.ready
     
+    const navigation = await book.loaded.navigation
     const chapters = []
-    const spine = await book.spine
     
-    for (let i = 0; i < Math.min(spine.length, 20); i++) {
-      const chapter = await book.spine.get(i)
-      const content = await chapter.load(book.renderer.render)
-      const text = content.textContent || content.innerText
+    // Obtener capítulos del spine
+    for (let i = 0; i < Math.min(book.spine.items.length, 15); i++) {
+      const item = book.spine.items[i]
+      const chapter = await book.load(item.href)
       
-      chapters.push({
-        id: `chapter-${i + 1}`,
-        title: chapter.title || `Capítulo ${i + 1}`,
-        content: cleanText(text),
-        sentences: splitIntoSentences(text)
-      })
+      const text = chapter.textContent || ''
+      const cleanContent = cleanText(text)
+      const sentences = splitIntoSentences(cleanContent)
+      
+      if (cleanContent.length > 50) { // Solo capítulos con contenido
+        chapters.push({
+          id: `chapter-${i + 1}`,
+          title: item.title || `Capítulo ${i + 1}`,
+          content: cleanContent,
+          sentences: sentences,
+          wordCount: cleanContent.split(' ').length
+        })
+      }
     }
     
     return {
-      title: book.packaging.metadata.title,
-      author: book.packaging.metadata.creator,
+      title: book.packaging.metadata.title || file.name,
+      author: book.packaging.metadata.creator || 'Autor desconocido',
+      language: book.packaging.metadata.language || 'es',
       chapters: chapters,
-      format: 'epub'
+      totalSentences: chapters.reduce((sum, ch) => sum + ch.sentences.length, 0),
+      format: 'epub',
+      source: file.name
     }
   } catch (error) {
-    throw new Error(`Error EPUB: ${error.message}`)
+    throw new Error(`Error procesando EPUB: ${error.message}`)
   }
 }
 
