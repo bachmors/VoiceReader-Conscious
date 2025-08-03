@@ -2,6 +2,7 @@
 // Parsea Markdown y TXT a formato estructurado (EPUB/PDF próximamente)
 
 import MarkdownIt from 'markdown-it'
+import ePub from 'epub.js'
 
 /**
  * Parser universal que detecta y procesa formatos compatibles
@@ -128,6 +129,40 @@ export const parseText = async (file) => {
     }
   } catch (error) {
     throw new Error(`Error procesando texto: ${error.message}`)
+  }
+}
+
+export const parseEpub = async (file) => {
+  try {
+    const arrayBuffer = await file.arrayBuffer()
+    const book = ePub(arrayBuffer)
+    
+    await book.ready
+    
+    const chapters = []
+    const spine = await book.spine
+    
+    for (let i = 0; i < Math.min(spine.length, 20); i++) {
+      const chapter = await book.spine.get(i)
+      const content = await chapter.load(book.renderer.render)
+      const text = content.textContent || content.innerText
+      
+      chapters.push({
+        id: `chapter-${i + 1}`,
+        title: chapter.title || `Capítulo ${i + 1}`,
+        content: cleanText(text),
+        sentences: splitIntoSentences(text)
+      })
+    }
+    
+    return {
+      title: book.packaging.metadata.title,
+      author: book.packaging.metadata.creator,
+      chapters: chapters,
+      format: 'epub'
+    }
+  } catch (error) {
+    throw new Error(`Error EPUB: ${error.message}`)
   }
 }
 
