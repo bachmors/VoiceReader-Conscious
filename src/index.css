@@ -150,3 +150,17 @@
     opacity: 0;
   }
 }
+
+/* Fix para selector de voces - que aparezca encima */
+.voice-selector, 
+.voice-dropdown,
+[data-radix-popper-content-wrapper] {
+  z-index: 9999 !important;
+}
+
+/* O selector más específico si tienes clase */
+.lucide-react + div,
+.voice-selector-dropdown {
+  z-index: 9999 !important;
+  position: relative;
+}
