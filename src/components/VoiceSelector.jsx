@@ -26,6 +26,22 @@ const VoiceSelector = ({ selectedVoice, onVoiceChange }) => {
           voice: voice
         }))
 
+      // En VoiceSelector - detectar todas las voces del sistema
+      const getAllVoices = () => {
+        const voices = speechSynthesis.getVoices()
+        
+        return voices.filter(voice => 
+          voice.lang.startsWith('es') || 
+          voice.lang.startsWith('en') ||
+          voice.lang.startsWith('ca')
+        ).map(voice => ({
+          id: voice.name,
+          name: voice.name,
+          lang: voice.lang,
+          quality: voice.localService ? 'Alta' : 'Media'
+        }))
+      }
+
       // Añadir voces premium (simuladas por ahora)
       const premiumVoices = [
         {
