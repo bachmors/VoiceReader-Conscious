@@ -151,16 +151,17 @@
   }
 }
 
-/* Fix para selector de voces - que aparezca encima */
-.voice-selector, 
+/* Fix selector de voces - aparecer encima */
+.voice-selector select,
 .voice-dropdown,
-[data-radix-popper-content-wrapper] {
-  z-index: 9999 !important;
-}
-
-/* O selector más específico si tienes clase */
-.lucide-react + div,
-.voice-selector-dropdown {
+[role="listbox"],
+[role="combobox"] + div {
   z-index: 9999 !important;
   position: relative;
+}
+
+/* Si usa Radix UI o similar */
+[data-radix-popper-content-wrapper],
+[data-radix-select-content] {
+  z-index: 9999 !important;
 }
