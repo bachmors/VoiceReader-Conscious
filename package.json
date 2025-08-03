@@ -14,7 +14,9 @@
     "react-dom": "^18.2.0",
     "markdown-it": "^13.0.2",
     "framer-motion": "^10.16.4",
-    "lucide-react": "^0.263.1"
+    "lucide-react": "^0.263.1",
+    "epubjs": "^0.3.93",
+    "react-pdf": "^7.5.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
