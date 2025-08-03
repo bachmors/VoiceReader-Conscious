@@ -54,26 +54,7 @@ const FileUploader = ({ onBookUpload }) => {
 
       console.log('📄 Procesando archivo:', file.name)
       
-      let bookData = null
-      const extension = file.name.split('.').pop().toLowerCase()
-      
-      switch (extension) {
-        case 'epub':
-          bookData = await parseEpub(file)
-          break
-        case 'pdf':
-          bookData = await parsePdf(file)
-          break
-        case 'md':
-        case 'markdown':
-          bookData = await parseMarkdown(file)
-          break
-        case 'txt':
-          bookData = await parseText(file)
-          break
-        default:
-          throw new Error(`Formato ${extension} no soportado`)
-      }
+      const bookData = await parseBook(file)
       
       clearInterval(progressInterval)
       setUploadProgress(100)
